@@ -1,2 +1,2 @@
 <?php require __DIR__ . '/connexion.php';
-    echo "connexion reussi";
+    echo "connexion reussi";?>
