@@ -3,6 +3,17 @@
 require __DIR__ . '/donnees.php';
 require __DIR__ . '/fonctions.php';
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $sql = 'INSERT INTO taches (titre, priorite, terminee)
+            VALUES (?, ?, 0)';
+    $requete = $pdo->prepare($sql);
+    $requete->execute([$_POST['titre'], $_POST['priorite']]);
+
+    header('Location: index.php');
+    exit;
+}
+
+
 $titrePage = 'Ma liste de tâches';
 $total = count($taches);
 $restantes = compterTachesRestantes($taches);
@@ -37,6 +48,26 @@ include __DIR__ . '/includes/entete.php';
             <p class="message">Bravo, toutes les tâches sont terminées !</p>
         <?php endif; ?>
     <?php endif; ?>
+</section>
+<section class="task-form-section">
+    <h2>Ajouter une tâche</h2>
+    <form method="POST">
+        
+        <div class="form-group">
+            <label for="titre">Titre :</label>
+            <input type="text" id="titre" name="titre" maxlength="255" required placeholder="Saisir le titre de la tâche">
+        </div>
+
+        <div class="form-group">
+            <label for="priorite">Priorité :</label>
+            <select id="priorite" name="priorite" required>
+                <option value="facile">Facile</option>
+                <option value="moyen" selected>Moyen</option>
+                <option value="difficile">Difficile</option>
+            </select>
+        </div>
+        <button type="submit">Enregistrer</button>
+    </form>
 </section>
 
 <?php include __DIR__ . '/test_connexion.php';?>

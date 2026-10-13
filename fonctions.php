@@ -27,3 +27,4 @@ function echapper(string $texte): string
 {
     return htmlspecialchars($texte, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 }
+
