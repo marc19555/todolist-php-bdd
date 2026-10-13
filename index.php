@@ -39,4 +39,5 @@ include __DIR__ . '/includes/entete.php';
     <?php endif; ?>
 </section>
 
+<?php include __DIR__ . '/test_connexion.php';?>
 <?php include __DIR__ . '/includes/pied.php'; ?>
