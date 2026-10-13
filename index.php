@@ -2,17 +2,7 @@
 // __DIR__ désigne le dossier de ce fichier, quel que soit le dossier de lancement.
 require __DIR__ . '/donnees.php';
 require __DIR__ . '/fonctions.php';
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $sql = 'INSERT INTO taches (titre, priorite, terminee)
-            VALUES (?, ?, 0)';
-    $requete = $pdo->prepare($sql);
-    $requete->execute([$_POST['titre'], $_POST['priorite']]);
-
-    header('Location: index.php');
-    exit;
-}
-
+require __DIR__ . '/ajouter.php';
 
 $titrePage = 'Ma liste de tâches';
 $total = count($taches);
@@ -61,9 +51,9 @@ include __DIR__ . '/includes/entete.php';
         <div class="form-group">
             <label for="priorite">Priorité :</label>
             <select id="priorite" name="priorite" required>
-                <option value="facile">Facile</option>
-                <option value="moyen" selected>Moyen</option>
-                <option value="difficile">Difficile</option>
+                <option value="haute">Haute</option>
+                <option value="moyenne" selected>Moyenne</option>
+                <option value="basse">Basse</option>
             </select>
         </div>
         <button type="submit">Enregistrer</button>
